@@ -1,3 +1,5 @@
+//beware shock-content
+
 function create(tag, className, textContent) {
   const element = document.createElement(tag);
   element.className = className;
@@ -22,7 +24,6 @@ function createTodos(removeHandler, toggleHandler, filterValue = "") {
     item.style.gridTemplateColumns = "auto 1fr auto";
     item.style.alignItems = "center";
     item.addEventListener("click", () => {
-      console.log("toggling");
       toggleHandler(todo.id);
       window.dispatchEvent(new Event("render"));
     });
@@ -33,7 +34,6 @@ function createTodos(removeHandler, toggleHandler, filterValue = "") {
     button.appendChild(icon);
     button.addEventListener("click", e => {
       e.stopPropagation();
-      console.log("removing");
       removeHandler(todo.id);
       window.dispatchEvent(new Event("render"));
     });
@@ -44,7 +44,6 @@ function createTodos(removeHandler, toggleHandler, filterValue = "") {
     checkbox.setAttribute("type", "checkbox");
     checkbox.checked = todo.done;
     checkbox.addEventListener("change", () => {
-      console.log("toggling");
       toggleHandler(todo.id);
       window.dispatchEvent(new Event("render"));
     });
@@ -164,22 +163,18 @@ function createMenu(addHandler) {
   menu.addEventListener("change", evt => {
     switch (true) {
       case plain.contains(evt.target):
-        console.log("plain");
         const plainForm = createForm();
         form.replaceWith(plainForm);
         form = plainForm;
         break;
       case timed.contains(evt.target):
-        console.log("timed");
         const timedForm = createForm("timed");
         form.replaceWith(timedForm);
         form = timedForm;
         break;
       case multiple.contains(evt.tagret):
-        console.log("multiple");
         break;
       default:
-        console.log(evt);
         break;
     }
   });
@@ -217,7 +212,6 @@ export default function render(addHandler, removeHandler, toggleHandler) {
   const menu = createMenu(addHandler);
 
   window.addEventListener("render", () => {
-    console.log("rerendering...");
     const newList = createTodos(
       removeHandler,
       toggleHandler,

@@ -4,8 +4,8 @@ function createId() {
 
 export default class Todo {
   constructor(name, id = createId() , done = false) {
-    this.id = id;
     this.name = name;
+    this.id = id;
     this.done = done;
   }
 
