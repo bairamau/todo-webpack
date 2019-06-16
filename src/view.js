@@ -104,7 +104,7 @@ function createMenu(addHandler) {
   menuWrapper.appendChild(menu);
   menu.appendChild(plain);
   menu.appendChild(timed);
-  menu.appendChild(multiple);
+  // menu.appendChild(multiple);
 
   container.appendChild(menuWrapper);
 
